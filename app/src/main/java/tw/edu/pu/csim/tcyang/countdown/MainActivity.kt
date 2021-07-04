@@ -29,4 +29,14 @@ class MainActivity : AppCompatActivity() {
             mainHandler.postDelayed(this, 1000) //間隔1秒
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        mainHandler.removeCallbacks(updateTextTask)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainHandler.post(updateTextTask)
+    }
 }
